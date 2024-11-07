@@ -30,11 +30,11 @@ import com.rocket.cosmicdetox_v2.ui.theme.White
 /**
  * 취소, 확인 버튼이 있는 Cosmic Detox Dialog
  *
- * - [onDismissRequest]: dialog가 종료될 때 호출되는 콜백
- * - [properties]: dialog의 종료 속성을 정의(뒤로가기, dialog 영역 바깥 클릭)
- * - [content]: dialog의 body 정의(padding 등 기타 속성은 직접 설정해야 함)
- * - [onConfirmClick]: dialog의 확인 버튼이 클릭되었을 때 호출
- * - [onCancelClick]: dialog의 취소 버튼이 클릭되었을 때 호출
+ * @param onDismissRequest dialog가 종료될 때 호출되는 콜백
+ * @param properties dialog의 종료 속성을 정의(뒤로가기, dialog 영역 바깥 클릭)
+ * @param content dialog의 body 정의(padding 등 기타 속성은 직접 설정해야 함)
+ * @param onConfirmClick: dialog의 확인 버튼이 클릭되었을 때 호출
+ * @param onCancelClick dialog의 취소 버튼이 클릭되었을 때 호출
  */
 @Composable
 fun CosmicDetoxDialog(
@@ -82,10 +82,10 @@ fun CosmicDetoxDialog(
 /**
  * 확인 버튼만 있는 Cosmic Detox Dialog
  *
- * - [onDismissRequest]: dialog가 종료될 때 호출되는 콜백
- * - [properties]: dialog의 종료 속성을 정의(뒤로가기, dialog 영역 바깥 클릭)
- * - [content]: dialog의 body 정의(padding 등 기타 속성은 직접 설정해야 함)
- * - [onConfirmClick]: dialog의 확인 버튼이 클릭되었을 때 호출
+ * @param onDismissRequest dialog가 종료될 때 호출되는 콜백
+ * @param properties dialog의 종료 속성을 정의(뒤로가기, dialog 영역 바깥 클릭)
+ * @param content dialog의 body 정의(padding 등 기타 속성은 직접 설정해야 함)
+ * @param onConfirmClick dialog의 확인 버튼이 클릭되었을 때 호출
  */
 @Composable
 fun CosmicDetoxOneButtonDialog(
@@ -119,9 +119,7 @@ fun CosmicDetoxOneButtonDialog(
 }
 
 /**
- * Dialog를 테스트하는 곳
- *
- * 여기서 Dialog 사용법 익히기.
+ * Dialog 사용 sample
  */
 @Preview
 @Composable

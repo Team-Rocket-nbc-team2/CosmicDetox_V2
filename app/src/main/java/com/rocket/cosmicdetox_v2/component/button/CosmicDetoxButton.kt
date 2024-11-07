@@ -30,13 +30,13 @@ import com.rocket.cosmicdetox_v2.ui.theme.White
 /**
  * 기본 CosmicDetox Button
  *
- * - [onClick]: 버튼 클릭 시 이벤트 처리
- * - [modifier]: 버튼의 크기, 추가 속성을 적용
- * - [text]: 버튼의 text
- * - [textColor]: 버튼의 textColor
- * - [containerColor]: 버튼의 배경색
- * - [icon]: 버튼 icon을 설정
- * - [iconTint]: icon의 색을 수정
+ * @param onClick 버튼 클릭 시 이벤트 처리
+ * @param modifier 버튼의 크기, 추가 속성을 적용
+ * @param text 버튼의 text
+ * @param textColor 버튼의 textColor
+ * @param containerColor 버튼의 배경색
+ * @param icon 버튼 icon을 설정
+ * @param iconTint icon의 색을 수정
  */
 @Composable
 fun CosmicDetoxButton(
@@ -78,14 +78,14 @@ fun CosmicDetoxButton(
 /**
  * Border가 있는 CosmicDetox Button
  *
- * - [onClick]: 버튼 클릭 시 이벤트 처리
- * - [modifier]: 버튼의 크기, 추가 속성을 적용
- * - [text]: 버튼의 text
- * - [textColor]: 버튼의 textColor
- * - [containerColor]: 버튼의 배경색
- * - [borderColor]: 버튼의 테두리 색을 지정
- * - [icon]: 버튼 icon을 설정
- * - [iconTint]: icon의 색을 수정
+ * @param onClick 버튼 클릭 시 이벤트 처리
+ * @param modifier 버튼의 크기, 추가 속성을 적용
+ * @param text 버튼의 text
+ * @param textColor 버튼의 textColor
+ * @param containerColor 버튼의 배경색
+ * @param borderColor 버튼의 테두리 색을 지정
+ * @param icon 버튼 icon을 설정
+ * @param iconTint icon의 색을 수정
  */
 @Composable
 fun CosmicDetoxBorderButton(
@@ -129,9 +129,9 @@ fun CosmicDetoxBorderButton(
 /**
  * 소셜 로그인 전용 버튼
  *
- * - [onClick]: 버튼 클릭 시 이벤트 처리
- * - [modifier]: 버튼의 크기, 추가 속성을 적용
- * - [type]: 로그인할 sns 종류 선택([SocialSignInType] 사용)
+ * @param onClick 버튼 클릭 시 이벤트 처리
+ * @param modifier 버튼의 크기, 추가 속성을 적용
+ * @param type 로그인할 sns 종류 선택. [SocialSignInType]을 이용해 sns의 type을 지정.
  */
 @Composable
 fun CosmicDetoxSocialSignInButton(
