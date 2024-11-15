@@ -26,6 +26,13 @@ import com.rocket.cosmicdetox_v2.ui.theme.Primary
 import com.rocket.cosmicdetox_v2.ui.theme.StrokeDark
 import com.rocket.cosmicdetox_v2.ui.theme.White
 
+/**
+ * 앱 정보를 표시하는 list item.
+ *
+ * @param onClick list를 클릭 했을 때 호출.
+ * @param packageName 앱 정보를 불러올 package name 정의
+ * @param secLeft 앱의 남은 이용 시간(초 형식으로 넘길 것.)
+ */
 @Composable
 fun CosmicDetoxAppTimeItem(
     onClick: () -> Unit,
@@ -86,6 +93,11 @@ private fun toOptionHoursAndMinutes(sec: Long): String {
     else "${min}분"
 }
 
+/**
+ * 모든 list item들의 사용 sample
+ *
+ * 직접 emulator를 실행해서 테스트해야 함. split으로 진행 시 화면 나오지 않음.
+ */
 @Preview
 @Composable
 private fun CosmicDetoxAppItemPreview() {
