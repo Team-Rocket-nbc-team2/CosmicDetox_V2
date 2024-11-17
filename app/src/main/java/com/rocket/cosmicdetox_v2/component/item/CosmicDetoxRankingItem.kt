@@ -22,6 +22,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -259,10 +260,11 @@ private fun convertSecToPlanetImage(sec: Long): Int {
     else R.drawable.img_sun
 }
 
+@Composable
 private fun toHoursAndMinutes(sec: Long): String {
     val hour = sec / 3600
     val min = (sec % 3600) / 60
-    return "${hour}시간 ${min}분"
+    return "${hour}${stringResource(R.string.number_picker_unit_hour)} ${min}${stringResource(R.string.number_picker_unit_minute)}"
 }
 
 /**

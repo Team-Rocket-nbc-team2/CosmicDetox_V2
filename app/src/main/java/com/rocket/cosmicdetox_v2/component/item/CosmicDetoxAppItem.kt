@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -214,11 +215,12 @@ fun CosmicDetoxAppCheckBoxItem(
     }
 }
 
+@Composable
 private fun toOptionHoursAndMinutes(sec: Long): String {
     val hour = sec / 3600
     val min = (sec % 3600) / 60
-    return if (hour > 0) "${hour}시간 ${min}분"
-    else "${min}분"
+    return if (hour > 0) "${hour}${stringResource(R.string.number_picker_unit_hour)} ${min}${stringResource(R.string.number_picker_unit_minute)}"
+    else "${min}${stringResource(R.string.number_picker_unit_minute)}"
 }
 
 /**

@@ -18,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -32,7 +33,7 @@ import com.rocket.cosmicdetox_v2.ui.theme.White
  *
  * @param onClick 버튼 클릭 시 이벤트 처리
  * @param modifier 버튼의 크기, 추가 속성을 적용
- * @param text 버튼의 text
+ * @param text 버튼의 text. 다국어 지원을 위해 [stringResource]를 사용할 것.
  * @param textColor 버튼의 textColor
  * @param containerColor 버튼의 배경색
  * @param icon 버튼 icon을 설정
@@ -80,7 +81,7 @@ fun CosmicDetoxButton(
  *
  * @param onClick 버튼 클릭 시 이벤트 처리
  * @param modifier 버튼의 크기, 추가 속성을 적용
- * @param text 버튼의 text
+ * @param text 버튼의 text. 다국어 지원을 위해 [stringResource]를 사용할 것.
  * @param textColor 버튼의 textColor
  * @param containerColor 버튼의 배경색
  * @param borderColor 버튼의 테두리 색을 지정
