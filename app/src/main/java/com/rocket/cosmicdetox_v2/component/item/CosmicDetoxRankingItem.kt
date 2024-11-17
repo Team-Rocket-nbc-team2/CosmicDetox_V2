@@ -41,14 +41,12 @@ import com.rocket.cosmicdetox_v2.ui.theme.White20
  * 랭킹 1위의 사용자 정보를 나타내는 card.
  *
  * @param modifier card의 크기, 추가 속성을 정의
- * @param icon 사용자의 프로필 image
  * @param name 사용자의 프로필 name
  * @param sec 사용자의 총 detox 시간
  */
 @Composable
 fun CosmicDetoxRanking1stItem(
     modifier: Modifier = Modifier,
-    icon: Int,
     name: String,
     sec: Long,
 ) {
@@ -76,7 +74,7 @@ fun CosmicDetoxRanking1stItem(
             }
 
             Image(
-                painter = painterResource(icon),
+                painter = painterResource(convertSecToPlanetImage(sec)),
                 contentDescription = "user icon",
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
@@ -112,14 +110,12 @@ fun CosmicDetoxRanking1stItem(
  * 랭킹 2위 사용자 정보를 나타내는 card.
  *
  * @param modifier card의 크기, 추가 속성을 정의
- * @param icon 사용자의 프로필 image
  * @param name 사용자의 프로필 name
  * @param sec 사용자의 총 detox 시간
  */
 @Composable
 fun CosmicDetoxRanking2ndItem(
     modifier: Modifier = Modifier,
-    icon: Int,
     name: String,
     sec: Long,
 ) {
@@ -147,7 +143,7 @@ fun CosmicDetoxRanking2ndItem(
             }
 
             Image(
-                painter = painterResource(icon),
+                painter = painterResource(convertSecToPlanetImage(sec)),
                 contentDescription = "user icon",
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
@@ -279,18 +275,16 @@ private fun CosmicDetoxRankingItemPreview() {
         Row {
             CosmicDetoxRanking1stItem(
                 modifier = Modifier.weight(1f),
-                icon = R.drawable.ic_account,
                 name = "test",
-                sec = 120000
+                sec = 1200000
             )
 
             CosmicDetoxRanking2ndItem(
                 modifier = Modifier
                     .weight(1f)
                     .padding(start = 16.dp),
-                icon = R.drawable.ic_account,
                 name = "test",
-                sec = 120000
+                sec = 240000
             )
         }
 
