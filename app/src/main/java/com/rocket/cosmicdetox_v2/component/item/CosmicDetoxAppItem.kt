@@ -1,14 +1,20 @@
 package com.rocket.cosmicdetox_v2.component.item
 
 import android.content.pm.PackageManager
+import androidx.annotation.FloatRange
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -18,6 +24,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -30,6 +37,7 @@ import coil3.compose.rememberAsyncImagePainter
 import com.rocket.cosmicdetox_v2.R
 import com.rocket.cosmicdetox_v2.component.checkbox.CosmicDetoxCheckBox
 import com.rocket.cosmicdetox_v2.ui.theme.Background
+import com.rocket.cosmicdetox_v2.ui.theme.BlueGrey
 import com.rocket.cosmicdetox_v2.ui.theme.Primary
 import com.rocket.cosmicdetox_v2.ui.theme.StrokeDark
 import com.rocket.cosmicdetox_v2.ui.theme.White
@@ -215,12 +223,101 @@ fun CosmicDetoxAppCheckBoxItem(
     }
 }
 
+/**
+ * 앱 사용량 list에 사용될 cosmic detox app usage progress item.
+ *
+ * @param modifier CosmicDetoxAppUsageProgressItem의 위치를 정의.
+ * @param progress item의 현재 progress 진척도를 표기. 0.0 부터 1.0 까지의 데이터만 포함할 것.
+ * @param usage item에 들어갈 app의 총 사용 시간.
+ * @param packageManager 앱 정보를 불러올 package manager([LocalContext]를 활용해 context로 불러올 것.)
+ * @param packageName 앱 정보를 불러올 package name.
+ */
+@Composable
+fun CosmicDetoxAppUsageProgressItem(
+    modifier: Modifier = Modifier,
+    @FloatRange(from = 0.0, to = 1.0) progress: Float = 0.5f,
+    usage: Int = 0,
+    packageManager: PackageManager,
+    packageName: String
+) {
+    val info = packageManager.getPackageInfo(packageName, 0)
+    val appInfo = info.applicationInfo
+
+    Row(
+        modifier = modifier.fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Image(
+            painter = rememberAsyncImagePainter(appInfo.loadIcon(packageManager)),
+            contentDescription = "cosmic detox app icon",
+            modifier = Modifier.size(48.dp)
+        )
+
+        Column(
+            modifier = Modifier
+                .wrapContentHeight()
+                .padding(start = 16.dp)
+        ) {
+            Text(
+                text = appInfo.loadLabel(packageManager).toString(),
+                style = TextStyle(
+                    color = White,
+                    fontSize = 16.sp
+                )
+            )
+
+            CosmicDetoxLinearProgressIndicator(
+                modifier = Modifier.padding(top = 4.dp),
+                progress = progress,
+                usage = usage
+            )
+        }
+    }
+}
+
+@Composable
+private fun CosmicDetoxLinearProgressIndicator(
+    modifier: Modifier = Modifier,
+    progress: Float = 0.5f,
+    usage: Int
+) {
+    Row(
+        modifier = modifier.wrapContentSize(),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        LinearProgressIndicator(
+            progress = { progress },
+            modifier = Modifier
+                .weight(1f)
+                .height(8.dp)
+                .clip(CircleShape),
+            color = Primary,
+            trackColor = BlueGrey
+        )
+
+        Text(
+            text = toMinutes(usage),
+            modifier = Modifier.padding(start = 4.dp),
+            style = TextStyle(
+                color = BlueGrey,
+                fontSize = 12.sp
+            )
+        )
+    }
+}
+
 @Composable
 private fun toOptionHoursAndMinutes(sec: Long): String {
     val hour = sec / 3600
     val min = (sec % 3600) / 60
     return if (hour > 0) "${hour}${stringResource(R.string.number_picker_unit_hour)} ${min}${stringResource(R.string.number_picker_unit_minute)}"
     else "${min}${stringResource(R.string.number_picker_unit_minute)}"
+}
+
+@Composable
+private fun toMinutes(sec: Int): String {
+    val min = sec / 60
+    return "$min${stringResource(R.string.number_picker_unit_minute)}"
 }
 
 /**
@@ -234,7 +331,7 @@ private fun CosmicDetoxAppItemPreview() {
     val context = LocalContext.current
     val state = remember { mutableStateOf(false) }
 
-    Column {
+    Column(modifier = Modifier.background(Background)) {
         CosmicDetoxAppTimeItem(
             onClick = {},
             packageManager = context.packageManager,
@@ -264,6 +361,12 @@ private fun CosmicDetoxAppItemPreview() {
                 state.value = it
             },
             checked = state,
+            packageManager = context.packageManager,
+            packageName = "com.android.chrome"
+        )
+        CosmicDetoxAppUsageProgressItem(
+            modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
+            progress = 0.0f + 0.39f,
             packageManager = context.packageManager,
             packageName = "com.android.chrome"
         )
