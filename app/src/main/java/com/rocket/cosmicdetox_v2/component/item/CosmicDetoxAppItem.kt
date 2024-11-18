@@ -52,6 +52,7 @@ import com.rocket.cosmicdetox_v2.ui.theme.White
  */
 @Composable
 fun CosmicDetoxAppTimeItem(
+    modifier: Modifier = Modifier,
     onClick: () -> Unit,
     packageManager: PackageManager,
     packageName: String,
@@ -62,13 +63,11 @@ fun CosmicDetoxAppTimeItem(
 
     Column(
         modifier = Modifier
-            .fillMaxWidth()
             .clickable { onClick() }
-            .background(Background)
             .alpha(if (secLeft == 0L) 0.5f else 1f)
     ) {
         Row(
-            modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
+            modifier = modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Image(
@@ -112,6 +111,7 @@ fun CosmicDetoxAppTimeItem(
  */
 @Composable
 fun CosmicDetoxAppTimeArrowItem(
+    modifier: Modifier = Modifier,
     onClick: () -> Unit,
     packageManager: PackageManager,
     packageName: String,
@@ -120,13 +120,9 @@ fun CosmicDetoxAppTimeArrowItem(
     val info = packageManager.getPackageInfo(packageName, 0)
     val appInfo = info.applicationInfo
 
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(Background)
-    ) {
+    Column {
         Row(
-            modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
+            modifier = modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Image(
@@ -180,6 +176,7 @@ fun CosmicDetoxAppTimeArrowItem(
  */
 @Composable
 fun CosmicDetoxAppCheckBoxItem(
+    modifier: Modifier = Modifier,
     onCheckedChange: (Boolean) -> Unit,
     checked: MutableState<Boolean>,
     packageManager: PackageManager,
@@ -188,13 +185,9 @@ fun CosmicDetoxAppCheckBoxItem(
     val info = packageManager.getPackageInfo(packageName, 0)
     val appInfo = info.applicationInfo
 
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(Background)
-    ) {
+    Column {
         Row(
-            modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
+            modifier = modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Image(
@@ -220,6 +213,8 @@ fun CosmicDetoxAppCheckBoxItem(
                 onCheckedChange = onCheckedChange
             )
         }
+
+        HorizontalDivider(color = StrokeDark)
     }
 }
 
@@ -333,30 +328,35 @@ private fun CosmicDetoxAppItemPreview() {
 
     Column(modifier = Modifier.background(Background)) {
         CosmicDetoxAppTimeItem(
+            modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
             onClick = {},
             packageManager = context.packageManager,
             packageName = "com.android.chrome",
             secLeft = 1200
         )
         CosmicDetoxAppTimeItem(
+            modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
             onClick = {},
             packageManager = context.packageManager,
             packageName = "com.android.chrome",
             secLeft = 12000,
         )
         CosmicDetoxAppTimeItem(
+            modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
             onClick = {},
             packageManager = context.packageManager,
             packageName = "com.android.chrome",
             secLeft = 0,
         )
         CosmicDetoxAppTimeArrowItem(
+            modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
             onClick = {},
             packageManager = context.packageManager,
             packageName = "com.android.chrome",
             secLeft = 120000
         )
         CosmicDetoxAppCheckBoxItem(
+            modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
             onCheckedChange = {
                 state.value = it
             },
