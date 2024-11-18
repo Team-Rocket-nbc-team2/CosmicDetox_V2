@@ -1,5 +1,6 @@
 package com.rocket.cosmicdetox_v2.component.numberpicker
 
+import androidx.annotation.IntRange
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -32,8 +33,8 @@ import com.rocket.cosmicdetox_v2.ui.theme.White
 @Composable
 fun CosmicDetoxTimeNumberPicker(
     modifier: Modifier = Modifier,
-    hourValue: Int = 0,
-    minuteValue: Int = 0,
+    @IntRange(from = 0, to = 5) hourValue: Int = 0,
+    @IntRange(from = 0, to = 59) minuteValue: Int = 0,
     onHourValueChange: (Int) -> Unit,
     onMinuteValueChange: (Int) -> Unit,
 ) {
