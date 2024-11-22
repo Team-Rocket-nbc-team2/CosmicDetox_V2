@@ -51,6 +51,12 @@ android {
 
 dependencies {
 
+    // coil
+    implementation(libs.coil.compose)
+
+    // compose number picker
+    implementation(libs.compose.numberPicker)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
